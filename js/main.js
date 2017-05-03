@@ -7,6 +7,7 @@
     // Server responses 
     socket.on('chatResponse', function(data) {
         uiConfig.chatContainer.innerHTML += createMessage(data);
+        createNotification(data);
     });
 
     /**
@@ -82,6 +83,34 @@
         return html;
     }
 
+    function setupNotifications() {
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!Notification) {
+                alert('Desktop notifications not available in your browser. Try Chromium.');
+                return;
+            }
+
+            if (Notification.permission !== "granted")
+                Notification.requestPermission();
+        });
+    }
+
+    function createNotification(message) {
+        if (Notification.permission !== "granted")
+            Notification.requestPermission();
+        else {
+            var notification = new Notification('Nuevo mensaje', {
+                icon: 'https://image.flaticon.com/teams/new/1-freepik.jpg',
+                body: message.body,
+            });
+
+            /*notification.onclick = function() {
+                window.open("http://stackoverflow.com/a/13328397/1269037");
+            };*/
+        }
+    }
+
+    setupNotifications();
     setupListeners();
     validateSession();
 
