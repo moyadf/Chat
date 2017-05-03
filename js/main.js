@@ -1,59 +1,75 @@
-(function(){
-  'use strict';
+(function() {
+    'use strict';
 
-  function Message(){
-    this.body = null;
-    this.author = null;
-    this.createdAt = new Date();
-  }
-  function Session(){
-    this.userName = null;
-  }
+    // General config
+    var SESSION_KEY = 'BANCHATSESSION';
 
-  var $ = function (id) {
-    return document.getElementById(id);
-  };
+    // Sokcet IO config 
+    var socket = io('https://ban-chat.herokuapp.com/');
+    socket.on('connect', function() {
+        alert('conectado al servidor.');
+    });
+    socket.on('chatResponse', function(data) {
+        uiConfig.chatContainer.innerHTML += createMessage(data);
+    });
 
-  var uiConfig = {
-    messageInput : $('message-input'),
-    emailField: $('login-input'),
-    chatContainer: $('chat-container'),
-    sendButton : $('send-button')
-  };
+    /**
+     * Method to handle the UI references in code.
+     */
+    function setupListeners() {
+        uiConfig.sendButton.addEventListener('click', function() {
+            sendMessage();
+            return false;
+        }, false);
+    }
 
-  function setupListeners(){
-    uiConfig.sendButton.addEventListener('click', function(){
-      sendMessage();
-      return false;
-    }, false);
-  }
+    /**
+     * Method to create a new session instance and save current session.
+     */
+    function login() {
+        var newSession = new Session();
+        newSession.userName = uiConfig.emailField.value;
+        window.localStorage.setItem(SESSION_KEY, JSON.stringify(newSession));
+    }
 
-  function login (){
-      var newSession = new Session();
-      newSession.userName = uiConfig.emailField.value;
-  }
+    /**
+     * Method to get current session from local storage
+     * @return {*} : Session Model (model.js)
+     */
+    function getSession() {
+        return JSON.parse(window.localStorage.getItem(SESSION_KEY));
+    }
 
-  function sendMessage () {
-       var currentMessage = new Message();
-       currentMessage.author = 'luis';
-       currentMessage.body = uiConfig.messageInput.value;
+    /**
+     * Method to notifiy server when user logout and remove session from local storage.
+     */
+    function logout() {
+        socket.emit('logout', getSession());
+        window.localStorage.removeItem(SESSION_KEY);
+    }
 
-       uiConfig.chatContainer.innerHTML += createMessage(currentMessage);
+    /**
+     * Method to create a new message instance and send it to server.
+     */
+    function sendMessage() {
+        var currentMessage = new Message();
+        currentMessage.author = 'luis';
+        currentMessage.body = uiConfig.messageInput.value;
+        socket.emit('chat', currentMessage);
+    }
 
-  }
+    /**
+     * Method to create a new message html structure.
+     * @param {*} message : Message model (model.js)
+     */
+    function createMessage(message) {
+        var html = '<li style="list-style:none" id="message-template">';
+        html += '<p>Autor:<span id="author-message">' + message.author + '</span></p>';
+        html += '<p>Mensaje:<span id="message-content">' + message.body + '</span></p>';
+        html += '<p>Fecha:<span id="date-message">' + message.createdAt.toJSON() + '</span></p></li>';
+        return html;
+    }
 
-  function printMessage () {
-
-  }
-
-  function createMessage(message){
-    var html = '<li style="list-style:none" id="message-template">';
-    html += '<p>Autor:<span id="author-message">'+ message.author +'</span></p>';
-    html += '<p>Mensaje:<span id="message-content">'+ message.body +'</span></p>';
-    html += '<p>Fecha:<span id="date-message">'+ message.createdAt.toJSON() +'</span></p></li>';
-    return html;
-  }
-
-  setupListeners();
+    setupListeners();
 
 })();
