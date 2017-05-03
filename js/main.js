@@ -56,7 +56,7 @@
      */
     function sendMessage() {
         var currentMessage = new Message();
-        currentMessage.author = 'luis';
+        currentMessage.author = getSession().userName;
         currentMessage.body = uiConfig.messageInput.value;
         socket.emit('chat', currentMessage);
     }
@@ -66,8 +66,11 @@
      */
     function validateSession() {
         if (!getSession()) {
-            uiConfig.loginContainer.style.display == 'block';
-            uiConfig.chatSection.style.display == 'none';
+            uiConfig.loginContainer.style.display = 'block';
+            uiConfig.chatSection.style.display = 'none';
+        } else {
+            uiConfig.loginContainer.style.display = 'none';
+            uiConfig.chatSection.style.display = 'block';
         }
     }
 
@@ -96,17 +99,19 @@
     }
 
     function createNotification(message) {
-        if (Notification.permission !== "granted")
-            Notification.requestPermission();
-        else {
-            var notification = new Notification('Nuevo mensaje', {
-                icon: 'https://image.flaticon.com/teams/new/1-freepik.jpg',
-                body: message.body,
-            });
+        if (getSession().userName != message.author) {
+            if (Notification.permission !== "granted")
+                Notification.requestPermission();
+            else {
+                var notification = new Notification('Nuevo mensaje', {
+                    icon: 'https://image.flaticon.com/teams/new/1-freepik.jpg',
+                    body: message.body,
+                });
 
-            /*notification.onclick = function() {
-                window.open("http://stackoverflow.com/a/13328397/1269037");
-            };*/
+                /*notification.onclick = function() {
+                    window.open("http://stackoverflow.com/a/13328397/1269037");
+                };*/
+            }
         }
     }
 
