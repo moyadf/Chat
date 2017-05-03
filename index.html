@@ -2,25 +2,59 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta charset="utf-8" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
 </head>
 
 <body>
+  <div id="login-view">
+      <input type="text" id="login-input" name="" value="">
+    <div id="login-button" class="">
+      Iniciar Sesión
+    </div>
+  </div>
 
-    <input type="text" id="message-input" name="" value="">
+  <div id="chat-section" class="">
+    <section class="body-content">
+      <ul id="chat-container">
 
-    <ul id="chat-container">
+      </ul>
+    </section>
+
+
+    <section class="message-content">
+      <div class="input-box responsive-box-md">
+        <input type="text" id="message-input" name="" value="">
+      </div>
+
+      <div class="button-box responsive-box-sm">
+
+        <a href="#">
+
+        </a>
+
+        <button class="btn-submit-chat" id="send-button" type="submit" name="button">
+          <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+        </button>
+      </div>
+    </section>
+  </div>
+  <!-- <input type="text" id="message-input" name="" value="">
+
+  <ul id="chat-container">
 
     </ul>
 
-    <button id="send-button" type="submit" name="button">Enviar</button>
-    <script type="text/javascript" src="js/config.js"></script>
-    <script type="text/javascript" src="js/model.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+  <button id="send-button" type="submit" name="button">Enviar</button> -->
+  <script type="text/javascript" src="js/config.js"></script>
+  <script type="text/javascript" src="js/model.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
 </body>
 </htmnl>

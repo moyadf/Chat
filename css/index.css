@@ -1,0 +1,13 @@
+* {
+  @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway');
+}
+
+body {
+  margin: 0;
+  padding: 10px 10px;
+}
+
+.message-content {
+  max-width: 100%;
+  padding: 10px 0px;
+}
