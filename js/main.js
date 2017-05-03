@@ -4,11 +4,7 @@
     // General config
     var SESSION_KEY = 'BANCHATSESSION';
 
-    // Sokcet IO config 
-    var socket = io('https://ban-chat.herokuapp.com/');
-    socket.on('connect', function() {
-        alert('conectado al servidor.');
-    });
+    // Server responses 
     socket.on('chatResponse', function(data) {
         uiConfig.chatContainer.innerHTML += createMessage(data);
     });
@@ -21,6 +17,10 @@
             sendMessage();
             return false;
         }, false);
+        uiConfig.loginButton.addEventListener('click', function() {
+            login();
+            return false;
+        }, false);
     }
 
     /**
@@ -30,6 +30,8 @@
         var newSession = new Session();
         newSession.userName = uiConfig.emailField.value;
         window.localStorage.setItem(SESSION_KEY, JSON.stringify(newSession));
+
+        validateSession();
     }
 
     /**
@@ -59,6 +61,16 @@
     }
 
     /**
+     * Method to validate current session and show to user login or chat view.
+     */
+    function validateSession() {
+        if (!getSession()) {
+            uiConfig.loginContainer.style.display == 'block';
+            uiConfig.chatSection.style.display == 'none';
+        }
+    }
+
+    /**
      * Method to create a new message html structure.
      * @param {*} message : Message model (model.js)
      */
@@ -66,10 +78,11 @@
         var html = '<li style="list-style:none" id="message-template">';
         html += '<p>Autor:<span id="author-message">' + message.author + '</span></p>';
         html += '<p>Mensaje:<span id="message-content">' + message.body + '</span></p>';
-        html += '<p>Fecha:<span id="date-message">' + message.createdAt.toJSON() + '</span></p></li>';
+        html += '<p>Fecha:<span id="date-message">' + message.createdAt + '</span></p></li>';
         return html;
     }
 
     setupListeners();
+    validateSession();
 
 })();
