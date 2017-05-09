@@ -1,13 +1,137 @@
+
 * {
-  @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway');
+   box-sizing: border-box; margin: 0; padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 10px 10px;
+  margin: 1rem;
+
+  /*background-color: #F9FAFC !important;*/
+  background-color: rgba(232, 237, 243, 0.95) !important;
+  background: url(../images/Formas_azul_5.png);
+  background-repeat: no-repeat;
+  background-position: 2px 299px;
+  background-size: cover;
+  z-index: 999;
+}
+
+/*.bg-body {
+  background-color: #F9FAFC !important;
+  background: url(../images/Formas_azul_5.png);
+  background-repeat: no-repeat;
+  background-position: 2px 299px;
+  background-size: cover;
+  z-index: 999;
+}*/
+
+h1 {
+  margin: 2rem 0 0;
+}
+
+/* Flexbox - align box */
+.flexbox {
+  display: flex;
+}
+
+.flexbox .stretch {
+  flex: 1;
+}
+
+.flexbox .normal {
+   flex: 0;
+   margin: 0 0 0 1rem;
+ }
+
+.flexbox div input {
+   padding: .5em 1em;
+   width: 100%;
+ }
+
+.flexbox div button {
+  padding: .5em 1em;
+  white-space: nowrap;
 }
 
 .message-content {
   max-width: 100%;
   padding: 10px 0px;
+}
+
+#chat-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 15px 15px;
+}
+
+.chat-container .stretch > .box-chat {
+  height: 40px;
+  border: 1px solid #E8EAF6;
+  outline: none;
+  padding-left: 55px;
+  padding-right: 55px;
+  color: #666;
+  border-radius: 10px;
+  height: 40px;
+}
+
+
+.button-box .btn-submit-chat {
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  border: transparent;
+  font-size: .9rem;
+  background: #EF4581;
+  color: #FAFAFA;
+  border-color: transparent;
+  outline: transparent;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+}
+
+#message-template > div {
+  list-style: none;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  /*background: #3F51B5;*/
+  background: #FDF8E5;
+  padding: 10px;
+  color: #6c878c;
+  border-radius: 15px;
+  box-shadow: 2px 4px 2px 1px rgb(232, 234, 246);
+  transition-timing-function: cubic-bezier(0.4, -0.04, 1, 1);
+}
+
+#message-template > div::before {
+  content: '';
+  position: absolute;
+  right: 6px;
+  top: 45px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #FDF8E5;
+}
+
+#message-template > .author-message {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  color: #03A9F4 !important;
+}
+
+#message-template  > .message-date {
+  display: block;
+  float: right;
+  font-size: 8px;
+  font-family: 'Poppins', sans-serif;
+  padding: 5px 10px;
+}
+
+* {
+  @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway');
 }

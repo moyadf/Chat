@@ -4,7 +4,7 @@
     // General config
     var SESSION_KEY = 'BANCHATSESSION';
 
-    // Server responses 
+    // Server responses
     socket.on('chatResponse', function(data) {
         uiConfig.chatContainer.innerHTML += createMessage(data);
         createNotification(data);
@@ -79,10 +79,11 @@
      * @param {*} message : Message model (model.js)
      */
     function createMessage(message) {
-        var html = '<li style="list-style:none" id="message-template">';
-        html += '<p>Autor:<span id="author-message">' + message.author + '</span></p>';
-        html += '<p>Mensaje:<span id="message-content">' + message.body + '</span></p>';
-        html += '<p>Fecha:<span id="date-message">' + message.createdAt + '</span></p></li>';
+        var messageDate = new Date(message.createdAt);
+
+        var html = '<li style="list-style:none; margin: 2em 0px;" id="message-template">';
+        html += '<div><span class="author-message"><b>' + message.author + '</b>: </span><span class="message-bubble">' + message.body + '</span></div>';
+        html += '<span class="message-date">' + messageDate.toLocaleString() + '</span></li>';
         return html;
     }
 
