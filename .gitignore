@@ -1,3 +1,4 @@
-node_modules/
-bower_components/
+mm/node_modules/
+mm/www/bower_components/
+mm/platforms
 test/

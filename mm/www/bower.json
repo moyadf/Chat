@@ -13,6 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "socket.io": "^1.7.3"
+    "socket.io": "^1.7.3",
+    "alertifyjs": "^1.0.11"
   }
 }

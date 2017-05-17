@@ -9,6 +9,14 @@
       return document.getElementById(id);
   };
 
+  //DOM SELECTOR HELPER value
+  var getValue = function(id) {
+    return document.getElementById(id).value;
+  }
+
+  // General config
+  var SESSION_KEY = 'BANCHATSESSION';
+
   var SERVER_URL = 'https://ban-chat.herokuapp.com/',
       uiConfig = {
           messageInput: $('message-input'),

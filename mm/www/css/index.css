@@ -128,6 +128,14 @@ h1 {
   padding: 5px 10px;
 }
 
+.bg-login {
+  background: url('../images/bg-bigLogin.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 * {
   @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway');
 }

@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Cookie');
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+body {
+  background: url('../images/bgBlur.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-container-login article {
+  padding: 15vh 0;
+}
+
+.main-container-login article h1 {
+  font-family: 'Cookie', cursive;
+  color: #ffffff;
+  text-align: center;
+  font-size: 4em;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.main-container-login article img {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  display: block;
+}
+
+.input-login {
+  padding: 10px 10px;
+  width: 180px;
+  margin: 10px 0;
+  border: transparent;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.input-login:active {
+  outline: transparent;
+  border: none;
+}
+
+.btn-login {
+  width: 170px;
+  margin: 0 auto;
+  padding: 15px;
+  color: #ffffff;
+  background-color: #F25544;
+  border-radius: 14px;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: .3s;
+}

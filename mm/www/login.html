@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/css-ripple-effect/dist/ripple.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+</head>
+
+<script type="text/javascript">
+  function Redirect() {
+ 
+    var newSession = new Session();
+    newSession.userName = getValue('login-input');
+    window.localStorage.setItem(SESSION_KEY, JSON.stringify(newSession));
+
+    if(getValue('login-input').length >= 5) {
+      window.location="index.html";
+    }
+
+    else {
+      alertify.error("Tu alias debe contener mas de 5 caracteres");
+    }
+  }
+</script>
+
+<body>
+
+  <section class="main-container-login">
+    <article>
+      <img src="images/iconChat.svg" alt="">
+      <h1>
+        ChatApp
+      </h1>
+
+      <div id="login-view" style="text-align: center; padding-top: 10vh;">
+        <input class="input-login" type="text" id="login-input" name="" value="">
+        <div id="login-button" class="btn-login" onclick="Redirect();">
+          Inicia Sesión
+        </div>
+      </div>
+
+    </article>
+
+  </section>
+
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="bower_components/alertifyjs/dist/js/alertify.js"></script>
+  <script type="text/javascript" src="js/config.js"></script>
+  <script type="text/javascript" src="js/model.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</htmnl>
